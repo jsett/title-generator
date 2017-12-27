@@ -1,18 +1,30 @@
-/*var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope, $http) {
-  $scope.yourName = "John";
-});*/
-
-
 var app = angular.module('myApp', ['ui.bootstrap']);
 app.controller('DropdownCtrl', function ($scope, $log) {
-  $scope.mydata = {
+  /*$scope.mydata = {
     pets: ["Dog","Cat","Cow","Bird","Goat","Fish"],
     days: ["Mon","Tue","Wed","Thur","Fri","Sat","Sun"]
-  };
-  $scope.adders = {};
-  //$scope.myitems = ["Dog","Cat","Cow","Bird","Goat","Fish"];
+  };*/
+  $scope.mydata = {};
 
+  $scope.adders = {};
+
+  $scope.ComboPredictor = function()
+  {
+    if (Object.keys($scope.mydata).length > 0)
+    {
+      //$log.log("combo predict");
+      t = 1
+      for (var x of Object.keys($scope.mydata)){
+        //$log.log(x);
+        //$log.log($scope.mydata[x].length);
+        t = t * $scope.mydata[x].length
+      }
+    }
+    else {
+      t = 0;
+    }
+    return t;
+  }
   $scope.mydatakeys = function()
   {
     return Object.keys($scope.mydata);
@@ -24,8 +36,15 @@ app.controller('DropdownCtrl', function ($scope, $log) {
   $scope.addItem = function(k){
     if ($scope.adders[k] != "")
     {
-      $scope.mydata[k].push($scope.adders[k]);
-      $scope.adders[k] = "";
+      if ($scope.mydata[k].indexOf($scope.adders[k]) != -1)
+      {
+        alert("Already Used");
+        $scope.adders[k] = "";
+      }
+      else {
+        $scope.mydata[k].push($scope.adders[k]);
+        $scope.adders[k] = "";
+      }
     }
   };
   $scope.removeGroup = function(k){
@@ -39,6 +58,14 @@ app.controller('DropdownCtrl', function ($scope, $log) {
     }
   }
 
+  $scope.myop = "";
+  $scope.outputhide = function(){
+    if ($scope.myop == "")
+    {
+      return true;
+    }
+    return false;
+  }
   $scope.status = {
     isopen: false
   };

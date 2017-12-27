@@ -5,10 +5,10 @@ let mainWindow;
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
       height: 600,
-      width: 800
+      width: 1000
   });
 
   mainWindow.loadURL('file://' + __dirname + '/index.html');
-  
+
   mainWindow.webContents.openDevTools();
 });
