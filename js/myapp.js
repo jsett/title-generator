@@ -1,10 +1,11 @@
 var app = angular.module('myApp', ['ui.bootstrap']);
 app.controller('DropdownCtrl', function ($scope, $log) {
-  /*$scope.mydata = {
+  $scope.mydata = {
     pets: ["Dog","Cat","Cow","Bird","Goat","Fish"],
-    days: ["Mon","Tue","Wed","Thur","Fri","Sat","Sun"]
-  };*/
-  $scope.mydata = {};
+    days: ["Mon","Tue","Wed","Thur","Fri","Sat","Sun"],
+    months: ["Jan","Feb","Mar","Apl"]
+  };
+  //$scope.mydata = {};
 
   $scope.adders = {};
 
@@ -69,6 +70,36 @@ app.controller('DropdownCtrl', function ($scope, $log) {
   $scope.status = {
     isopen: false
   };
+  $scope.GenerateCombos = function(p, listdepth){
+    function cartesian() {
+      a = Object.keys($scope.mydata);
+      o = []
+      for (x of a)
+      {
+        o.push($scope.mydata[x])
+      }
+      var r = [], arg = o, max = arg.length-1;
+      function helper(arr, i) {
+        for (var j=0, l=arg[i].length; j<l; j++) {
+          var a = arr.slice(0); // clone arr
+          a.push(arg[i][j]);
+          if (i==max)
+            r.push(a);
+          else
+            helper(a, i+1);
+        }
+      }
+      helper([], 0);
+      return r;
+    }
+    zzzz = cartesian();
+    return zzzz;
+  }
+  $scope.GenToScreen = function(){
+    z = $scope.GenerateCombos();
+    r = z.map(function(x){return x.join(" ")}).join("\n");
+    $scope.myop = r;
+  }
 
   $scope.toggled = function(open) {
     $log.log('Dropdown is now: ', open);

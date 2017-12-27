@@ -61,16 +61,14 @@
             </div>
             </div>
           </form>
-          <button class='btn btn-primary'>Generate to screen</button>
-          <button class='btn btn-primary'>Generate to .txt</button>
-          <button class='btn btn-primary'>Generate to .csv</button>
+          <button class='btn btn-primary' ng-click="GenToScreen()">Generate to screen</button>
+          <!--button class='btn btn-primary'>Generate to .txt</button>
+          <button class='btn btn-primary'>Generate to .csv</button-->
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
           <textarea ng-model="myop" ng-hide="outputhide()"></textarea>
-          <!--textarea ng-model="output"  ng-hide="outputhide()">
-          </textara-->
         </div>
       </div>
   </div>
