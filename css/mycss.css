@@ -14,6 +14,14 @@
 {
   margin: 8px;
 }
+.cnt
+{
+  font-size: 1.6em;
+}
+.hh
+{
+  border-color: black;
+}
 .container-full {
   margin: 0 auto;
   width: 100%;
