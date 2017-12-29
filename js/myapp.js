@@ -101,6 +101,24 @@ app.controller('DropdownCtrl', function ($scope, $log) {
     $scope.myop = r;
   }
 
+  $scope.SaveToFile = function(){
+    localStorage.setItem($scope.savename, JSON.stringify($scope.mydata));
+  }
+  $scope.getkeys = function(){
+    x = Object.keys(localStorage);
+    r = [];
+    k = 0;
+    for (var i of x){
+      r.push([k,i]);
+      k = k + 1;
+    }
+    return r
+  }
+  
+  $scope.LoadFromFile = function(){
+
+  }
+
   $scope.toggled = function(open) {
     $log.log('Dropdown is now: ', open);
   };
