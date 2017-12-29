@@ -8,3 +8,9 @@ npm install -g bower
 bower install angular-bootstrap
 bower install bootstrap
 ```
+
+# Run
+
+```
+electron title-generator/
+```
