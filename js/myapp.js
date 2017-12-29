@@ -1,11 +1,11 @@
 var app = angular.module('myApp', ['ui.bootstrap']);
 app.controller('DropdownCtrl', function ($scope, $log) {
-  $scope.mydata = {
+  /*$scope.mydata = {
     pets: ["Dog","Cat","Cow","Bird","Goat","Fish"],
     days: ["Mon","Tue","Wed","Thur","Fri","Sat","Sun"],
     months: ["Jan","Feb","Mar","Apl"]
-  };
-  //$scope.mydata = {};
+  };*/
+  $scope.mydata = {};
 
   $scope.adders = {};
 
@@ -104,6 +104,9 @@ app.controller('DropdownCtrl', function ($scope, $log) {
   $scope.SaveToFile = function(){
     localStorage.setItem($scope.savename, JSON.stringify($scope.mydata));
   }
+
+  $scope.keydata = [];
+
   $scope.getkeys = function(){
     x = Object.keys(localStorage);
     r = [];
@@ -112,11 +115,16 @@ app.controller('DropdownCtrl', function ($scope, $log) {
       r.push([k,i]);
       k = k + 1;
     }
-    return r
+    $scope.keydata = r;
+    $log.log($scope.keydata);
   }
-  
-  $scope.LoadFromFile = function(){
 
+  $scope.getkeys();
+
+  $scope.LoadFromFile = function(x){
+    a = Object.keys(localStorage);
+    r = localStorage[a[x]]
+    $scope.mydata = JSON.parse(r);
   }
 
   $scope.toggled = function(open) {

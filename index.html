@@ -36,7 +36,8 @@
                 Load<span class="caret"></span>
               </button>
               <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav" >
-                  <li ng-repeat="itm in getkeys()" role="menuitem" ng-click="LoadFromFile(itm[0])">{{itm}}</li>
+                  <!--li ng-repeat="itm in getkeys()" role="menuitem" ng-click="LoadFromFile(itm[0])">{{itm[1]}}</li-->
+                  <li ng-repeat="itm in keydata track by $index" role="menuitem" ng-click="LoadFromFile(itm[0])">{{itm[1]}}</li>
               </ul>
           </div>
         </div>
